@@ -1,3 +1,5 @@
+let titelPlayer1 = document.getElementById("titel-player1") 
+let titelPlayer2 = document.getElementById("titel-player2") 
 let main = document.getElementById("main")
 let newGame = document.getElementById("new-game")
 let rooling = document.getElementById("rooling")
@@ -18,8 +20,8 @@ let totalScorePlayer1 = 0
 let totalScorePlayer2 = 0
 let countRoling = 0
 
-let p1 = {"currentScore":currentScore1,"totalScore":totalScore1,"pScore":pScore1,"totalScorePlayer":totalScorePlayer1,"name":"Player1"}
-let p2 = {"currentScore":currentScore2,"totalScore":totalScore2,"pScore":pScore2,"totalScorePlayer":totalScorePlayer2,"name":"Player2"}
+let p1 = { "currentScore": currentScore1, "totalScore": totalScore1, "pScore": pScore1, "totalScorePlayer": totalScorePlayer1, "name": "Player1","titel":titelPlayer1}
+let p2 = { "currentScore": currentScore2, "totalScore": totalScore2, "pScore": pScore2, "totalScorePlayer": totalScorePlayer2, "name": "Player2" ,"titel":titelPlayer2}
 
 
 function initGame() {
@@ -29,31 +31,30 @@ function initGame() {
     } else {
         turn = p2
     }
+    turn.titel.classList = "turn"
 
-    rooling.addEventListener("click",()=>{
+    pScore1.textContent = 0
+    pScore2.textContent = 0
+    totalScore1.textContent = 0
+    totalScore2.textContent = 0
 
-        if(countRoling < 5){
+    rooling.addEventListener("click", () => {
+
+        if (countRoling < 5) {
             turnRooling()
-            
-            finsh.addEventListener("click",finishTurn)
-        }else{
+
+            finsh.addEventListener("click", finishTurn)
+        } else if (countRoling >= 5) {
             finishTurn()
         }
-        
-    })  
+
+    })
 }
 
 
-
-
-
-
-
-
-
 function turnRooling() {
-    
-    if(countRoling < 5){
+
+    if (countRoling < 5) {
         let score1 = Math.floor(Math.random() * 6) + 1
         let score2 = Math.floor(Math.random() * 6) + 1
 
@@ -62,37 +63,45 @@ function turnRooling() {
 
         scoreTurn += score1 + score2
 
-        if(score1 === score2){
+        if (score1 === score2) {
             scoreTurn = 0
+            turn.pScore.textContent = scoreTurn
+            finishTurn()
         }
 
-        turn.pScore.textContent = scoreTurn 
-        countRoling ++
+        turn.pScore.textContent = scoreTurn
+        countRoling++
     }
 }
 
 
-function finishTurn(){
-    
+function finishTurn() {
+
     turn.totalScorePlayer += scoreTurn
     turn.totalScore.textContent = turn.totalScorePlayer
     scoreTurn = 0
     countRoling = 0
-    
+
     chackWin()
 
-    if (turn == p1 ){
+    if (turn == p1) {
+        turn.titel.classList = ""
         turn = p2
-    }else{ turn = p1}
+        turn.titel.classList = "turn"
+    } else {
+        turn.titel.classList = ""
+        turn = p1 
+        turn.titel.classList = "turn"
+    }
 }
 
 
-function chackWin(){
-    if(turn.totalScorePlayer >= targetScore){
+function chackWin() {
+    if (turn.totalScorePlayer >= targetScore) {
         div = document.createElement('div')
         div.id = "win"
         div.textContent = `${turn.name} Is Winnnnnnnnnnnnnnnn :))))`
-        
+
         main.append(div)
     }
 }

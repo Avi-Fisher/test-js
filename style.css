@@ -25,10 +25,10 @@ main {
     text-align: center;
 }
 
-#current-score1{
+#current-score1 {
     margin-top: 5rem;
     margin-left: 23%;
-    background-color:rgb(76, 170, 139) ;
+    background-color: rgb(76, 170, 139);
     height: 5rem;
     width: 5rem;
     border-radius: 5%;
@@ -37,6 +37,7 @@ main {
 #menu {
     background-color: rgb(150, 95, 24);
     height: 55rem;
+    width: 20%;
 }
 
 #player2 {
@@ -47,10 +48,10 @@ main {
     text-align: center;
 }
 
-#current-score2{
+#current-score2 {
     margin-top: 5rem;
     margin-left: 23%;
-    background-color:rgb(8, 112, 77);
+    background-color: rgb(8, 112, 77);
     height: 5rem;
     width: 5rem;
     border-radius: 5%;
@@ -70,4 +71,8 @@ main {
     border-radius: 2rem;
     padding-top: 5rem;
     font-size: xx-large;
+}
+
+.turn {
+    color: darkorange;
 }
