@@ -82,17 +82,18 @@ function finishTurn() {
     scoreTurn = 0
     countRoling = 0
 
-    chackWin()
+    if (! chackWin()){
 
-    if (turn == p1) {
-        turn.titel.classList = ""
-        turn = p2
-        turn.titel.classList = "turn"
-    } else {
-        turn.titel.classList = ""
-        turn = p1 
-        turn.titel.classList = "turn"
-    }
+        if (turn == p1) {
+            turn.titel.classList = ""
+            turn = p2
+            turn.titel.classList = "turn"
+        } else {
+            turn.titel.classList = ""
+            turn = p1 
+            turn.titel.classList = "turn"
+        }
+    }    
 }
 
 
@@ -103,7 +104,9 @@ function chackWin() {
         div.textContent = `${turn.name} Is Winnnnnnnnnnnnnnnn :))))`
 
         main.append(div)
+        return true
     }
+    return false
 }
 
 
